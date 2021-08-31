@@ -4,60 +4,70 @@ const semaphore = document.getElementById("semaphore")
 const turnAutomatic = document.getElementById("turnAutomatic")
 let idInterval
 
-const isOff = () => semaphore.src.includes("desligado")
+const isSemaphoreOff = () => semaphore.src.includes("desligado")
 
-const isRed = () => semaphore.src.includes("vermelho")
+const isSemaphoreRed = () => semaphore.src.includes("vermelho")
 
-const isYellow = () => semaphore.src.includes("amarelo")
+const isSemaphoreYellow = () => semaphore.src.includes("amarelo")
 
-function toTurnOff() {
-    semaphore.src = "img/desligado.png"
-}
+const toTurnSemaphoreOff = () => semaphore.src = "img/desligado.png"
 
-function toTurnRed() {
+const toTurnSemaphoreRed = () => semaphore.src = "img/vermelho.png"
+
+const toTurnSemaphoreYellow = () => semaphore.src = "img/amarelo.png"
+
+const toTurnSemaphoreGreen = () => semaphore.src = "img/verde.png"
+
+function toTurnSemaphoreRedAndReset() {
+    clearInterval(idInterval)
+    turnAutomatic.textContent = "AUTOMATIC"
     semaphore.src = "img/vermelho.png"
 }
 
-function toTurnYellow() {
+function toTurnSemaphoreYellowAndReset() {
+    clearInterval(idInterval)
+    turnAutomatic.textContent = "AUTOMATIC"
     semaphore.src = "img/amarelo.png"
 }
 
-function toTurnGreen() {
+function toTurnSemaphoreGreenAndReset() {
+    clearInterval(idInterval)
+    turnAutomatic.textContent = "AUTOMATIC"
     semaphore.src = "img/verde.png"
 }
 
 function changeImage() {
-    if (isOff()) {
-        toTurnRed()
-    } else if (isRed()) {
-        toTurnYellow()
-    } else if (isYellow()) {
-        toTurnGreen()
+    if (isSemaphoreOff()) {
+        toTurnSemaphoreRed()
+    } else if (isSemaphoreRed()) {
+        toTurnSemaphoreYellow()
+    } else if (isSemaphoreYellow()) {
+        toTurnSemaphoreGreen()
     } else {
-        toTurnRed()
+        toTurnSemaphoreRed()
     }
 }
 
-function toTurnAutomatic() {
+function toTurnSemaphoreAutomatic() {
 
     if (turnAutomatic.textContent == "AUTOMATIC") {
         idInterval = setInterval(changeImage, 1000)
         turnAutomatic.textContent = "STOP"
     } else {
         clearInterval(idInterval)
-        toTurnOff()
+        toTurnSemaphoreOff()
         turnAutomatic.textContent = "AUTOMATIC"
     }
 
 }
 
 document.getElementById("turnRed")
-    .addEventListener("click", toTurnRed)
+    .addEventListener("click", toTurnSemaphoreRedAndReset)
 
 document.getElementById("turnYellow")
-    .addEventListener("click", toTurnYellow)
+    .addEventListener("click", toTurnSemaphoreYellowAndReset)
 
 document.getElementById("turnGreen")
-    .addEventListener("click", toTurnGreen)
+    .addEventListener("click", toTurnSemaphoreGreenAndReset)
 
-turnAutomatic.addEventListener("click", toTurnAutomatic)
+turnAutomatic.addEventListener("click", toTurnSemaphoreAutomatic)
