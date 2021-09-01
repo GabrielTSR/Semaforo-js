@@ -21,19 +21,19 @@ const toTurnSemaphoreGreen = () => semaphore.src = "img/verde.png"
 function toTurnSemaphoreRedAndReset() {
     clearInterval(idInterval)
     turnAutomatic.textContent = "AUTOMATIC"
-    semaphore.src = "img/vermelho.png"
+    toTurnSemaphoreRed()
 }
 
 function toTurnSemaphoreYellowAndReset() {
     clearInterval(idInterval)
     turnAutomatic.textContent = "AUTOMATIC"
-    semaphore.src = "img/amarelo.png"
+    toTurnSemaphoreYellow()
 }
 
 function toTurnSemaphoreGreenAndReset() {
     clearInterval(idInterval)
     turnAutomatic.textContent = "AUTOMATIC"
-    semaphore.src = "img/verde.png"
+    toTurnSemaphoreGreen()
 }
 
 function changeImage() {
